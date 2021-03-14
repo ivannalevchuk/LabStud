@@ -1,0 +1,10 @@
+Students with low average: 
+
+
+|Ginaylo        | Sofia      | 25 | 06 | 2005 | 4 | 3 | 5 | 4.00 |
+
+|Savyn          | Ivan       | 14 | 10 | 2004 | 2 | 1 | 2 | 1.67 |
+
+|Glorin         | Maxym      | 15 | 03 | 2004 | 5 | 2 | 4 | 3.67 |
+
+|Kovalevych     | Valentyn   | 14 | 02 | 2002 | 3 | 3 | 2 | 2.67 |
