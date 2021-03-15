@@ -10,7 +10,7 @@
 #define JULY 7
 #define AUGUST 8
 //
-//структура, що містить дані про студентів
+//structure that contains data about students
 //
 struct Sstudent {
 	char cSurname[SIZE];
@@ -21,42 +21,43 @@ struct Sstudent {
 	struct Sstudent *pNext;
 };
 //
-//додавання нового елемента з файлу в однозв'язний список
+//adding a new element from a file to a singly linked list
 //
 void AddStudent(struct Sstudent **pHead, struct Sstudent *pElem);
 //
-//додавання нового елемента з клавіатури на початок однозв'язного списку
+//adding a new element from a keyboard to a singly linked list
 //
 void AddNew(struct Sstudent **pHead);
 //
-//зчитування елементів з файлу в однозв'язний список
+//reading elements from a file into a singly linked list
 //
 struct Sstudent *ReadStruct(FILE *pInput);
 //
-//визначення студентів, народжених влітку
+//definition of students who were born in summer
 //
 int SummerBorn(struct Sstudent *pHead);
 //
-//видалення наступного елемента від заданого
+//removing the next element from the given one
 //
 void DelNextStudent(struct Sstudent *pStudent);
 //
-//видалення попереднього елемента від заданого
+//removing the previous element from the given one
 //
 void DelStudentBegin(struct Sstudent **pHead);
 //
-//видалення списку елементів
+//deleting the list of elements
 //
 void DelStudent(struct Sstudent **pHead);
 //
-//сортування студентів за зростанням рейтингового балу
+//sorting students in ascending order of rating score
 //
 struct Sstudent *Sort(struct Sstudent *pHead);
 //
-//виведення одного елемента списку у файл
+//output of one element of the list to a file
 //
 void Print(struct Sstudent *pHead, FILE *pOutput);
 //
-//виведення усіх елементів списку у файл
+//output of all elements of the list to a file
 //
 void PrintStudents(struct Sstudent *pHead, FILE *pOutput);
+
