@@ -16,11 +16,10 @@ int main(){
 	if (cH != 'r' && cH != 'a' && cH != 's' && cH != 'l') {
 		printf("\n");
 		printf("Wrong input. Try again\n");
-	}
-	else {
+	} else {
 		switch (cH) {
 		case 'r':
-			fprintf(pfW, "Students:\n");
+		   	fprintf(pfW, "Students:\n");
 			fprintf(pfW, "\n");
 			pHead = Sort(pHead);
 			PrintStudents(pHead, pfW);
@@ -33,11 +32,11 @@ int main(){
 			PrintStudents(pHead, pfW);
 			break;
 		case 'l':
-			fprintf(pfW, "Students with low average: \n");
-			fprintf(pfW, "\n");
+			printf( "\nStudents with low average: \n");
+			printf( "\n");
 			while (pFirst = pFirst->pNext) {
 				if ((pFirst->dAverage) < 4.5)
-					Print(pFirst, pfW);
+					Print(pFirst);
 			}
 			break;
 		case 's':
@@ -58,7 +57,7 @@ int main(){
 			break;
 		}
 		printf("\n");
-		puts("Done! Check the file 'student.txt'");
+		
 	}
 	DelStudent(&pHead);
 	fclose(pfR);

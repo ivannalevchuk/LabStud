@@ -39,7 +39,8 @@ pTmp->dAverage = dAvr_mark;
 
 struct Sstudent *ReadStruct(FILE *pInput){
 	struct Sstudent* p = malloc(sizeof(struct Sstudent));
-	fscanf(pInput, "%s %s %d %d %d", p->cSurname, p->cName, &(p->nDate[0]), &(p->nDate[1]), &(p->nDate[2]));
+	fscanf(pInput, "%s %s", p->cSurname, p->cName);
+    fscanf(pInput, "%d %d %d", &(p->nDate[0]), &(p->nDate[1]), &(p->nDate[2]));
 	double dAvr_mark = 0;
 	for (int i = 0; i < NUMBER_OF_MARKS; i++) {
 		fscanf(pInput, "%d", &(p->nMarks[i]));
@@ -51,7 +52,8 @@ struct Sstudent *ReadStruct(FILE *pInput){
 	struct Sstudent *pNew;
 	while (!feof(pInput)) {
 		pNew = malloc(sizeof(struct Sstudent));
-		fscanf(pInput, "%s %s %d %d %d", pNew->cSurname, pNew->cName, &(pNew->nDate[0]), &(pNew->nDate[1]), &(pNew->nDate[2]));
+		fscanf(pInput, "%s %s", pNew->cSurname, pNew->cName);
+	    fscanf(pInput, "%d %d %d", &(pNew->nDate[0]), &(pNew->nDate[1]), &(pNew->nDate[2]));
 		double dAvr_mark = 0;
 		for (int i = 0; i < NUMBER_OF_MARKS; i++) {
 			fscanf(pInput, "%d", &(pNew->nMarks[i]));
@@ -67,6 +69,7 @@ struct Sstudent *ReadStruct(FILE *pInput){
 //--------------------------------------------------------------------------------------------------
 
 int SummerBorn(struct Sstudent* pHead) {
+
 	if (pHead->nDate[1] == JUNE || pHead->nDate[1] == JULY || pHead->nDate[1] == AUGUST) {
 		return 1;
 	}
@@ -107,10 +110,9 @@ struct Sstudent *Sort(struct Sstudent *pHead) {
 		if (pNewHead == NULL || p->dAverage < pNewHead->dAverage) {
 			p->pNext = pNewHead;
 			pNewHead = p;
-		}
-		else {
+		} else {
 			struct Sstudent* pCurrent = pNewHead;
-			while (pCurrent->pNext != NULL && !(p->dAverage < pCurrent->pNext->dAverage)) {
+			while (pCurrent->pNext != NULL && !(p->dAverage < pCurrent->pNext->dAverage)){
 				pCurrent = pCurrent->pNext;
 			}
 			p->pNext = pCurrent->pNext;
@@ -122,24 +124,55 @@ struct Sstudent *Sort(struct Sstudent *pHead) {
 
 //--------------------------------------------------------------------------------------------------
 
-void Print(struct Sstudent *pHead, FILE *pOutput) {
+void PrintFile(struct Sstudent* pHead, FILE* pOutput) {
+
 	fprintf(pOutput, "\n");
-	fprintf(pOutput,"|%-14s | %-10s | %02d | %02d | %4d |", pHead->cSurname, pHead->cName, pHead->nDate[0], pHead->nDate[1], pHead->nDate[2]);
+	fprintf(pOutput, "|%-14s | %-10s | ", pHead->cSurname, pHead->cName);
+	fprintf(pOutput, "%02d | %02d | %4d |", pHead->nDate[0], pHead->nDate[1], pHead->nDate[2]);
 	for (int i = 0; i < NUMBER_OF_MARKS; i++) {
-		fprintf(pOutput," %d |", (pHead->nMarks[i]));
+		fprintf(pOutput, " %d |", (pHead->nMarks[i]));
 	}
-	fprintf(pOutput,"% 4.2lf |", pHead->dAverage);
-	fprintf(pOutput,"\n");
+	fprintf(pOutput, "% 4.2lf |", pHead->dAverage);
+	fprintf(pOutput, "\n");
 }
 
 //--------------------------------------------------------------------------------------------------
 
+void Print(struct Sstudent* pHead){
+		printf("\n");
+		printf("|%-14s | %-10s | ", pHead->cSurname, pHead->cName);
+		printf("%02d | %02d | %4d |", pHead->nDate[0], pHead->nDate[1], pHead->nDate[2]);
+		for (int i = 0; i < NUMBER_OF_MARKS; i++) {
+			printf(" %d |", (pHead->nMarks[i]));
+		}
+		printf("% 4.2lf |", pHead->dAverage);
+		printf("\n");
+	}
+
+//--------------------------------------------------------------------------------------------------
+
 void PrintStudents(struct Sstudent *pHead, FILE *pOutput) {
-	fprintf(pOutput, "Surname           Name         Date of Birth     Marks    Average \n");
-	if (pHead) {
-		do {
-			Print(pHead, pOutput);
-		} while (pHead = pHead->pNext);
+	puts("\n");
+	printf("Would you like to you want to output the list to a file(1)\
+\ or to the console(0)?\n");
+	int nNum;
+	scanf("%d", &nNum);
+	puts("\n");
+	if (nNum == 1) {
+		fprintf(pOutput, "Surname           Name         Date of Birth     Marks    Average \n");
+		if (pHead) {
+			do {
+				PrintFile(pHead, pOutput);
+			} while (pHead = pHead->pNext);
+		}
+	}
+	else if (nNum == 0) {
+		printf( "Surname           Name         Date of Birth     Marks    Average \n");
+		if (pHead) {
+			do {
+				Print(pHead);
+			} while (pHead = pHead->pNext);
+		}
 	}
 }
 

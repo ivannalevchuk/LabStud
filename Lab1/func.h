@@ -55,9 +55,12 @@ struct Sstudent *Sort(struct Sstudent *pHead);
 //
 //output of one element of the list to a file
 //
-void Print(struct Sstudent *pHead, FILE *pOutput);
+void PrintFile(struct Sstudent *pHead, FILE *pOutput);
 //
-//output of all elements of the list to a file
+//output of all elements of the list to a file or console
 //
 void PrintStudents(struct Sstudent *pHead, FILE *pOutput);
-
+//
+//output of one element of the list to a console
+//
+void Print(struct Sstudent* pHead);
